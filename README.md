@@ -1,4 +1,4 @@
-# Parkling_Lot
+# Parking_Lot
 
 This is an automated ticketing system that allows customers to use our parking lot without human intervention. 
 When a car enters the parking lot, we want to have a ticket issued to the driver. The ticket issuing process includes:- 
