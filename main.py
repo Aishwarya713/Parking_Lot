@@ -1,13 +1,14 @@
-import sys
-
+# Class Parking_lot
 class Parking_lot:
-    def __init__(self, space):
-        self.space = space
-        self.lot = [None] * space
-        print("Created parking of %d slots" % (space))
-        self.filled = 0
 
-    def park(self, car, age):
+    def __init__(self, space):
+        self.space = space  # The space to be allocated to the lot
+        self.lot = [None] * space # An array of size space to store the details of the parking lot
+        print("Created parking of %d slots" % (space))
+        self.filled = 0  # To keep track of the filled slots
+
+# Function to park the car in the parking lot
+    def park(self, car, age): 
         if self.filled == self.space:
             print("Parking lot is Full")
         else:
@@ -25,7 +26,8 @@ class Parking_lot:
             else:
                 print("Parking lot is Full")
 
-    def slots_with_age(self, age):
+# Function to return Slot numbers of all slots where cars of drivers of a particular age are parked.
+    def slots_with_age(self, age): 
         ans = []
         for i in range(self.space):
             if self.lot[i] != None and self.lot[i][1] == age:
@@ -35,7 +37,8 @@ class Parking_lot:
         else:
             print(*ans)
 
-    def slots_with_reg_no(self, car):
+# Function to return Slot numbers in which a car with a given vehicle registration plate is parked.
+    def slots_with_reg_no(self, car): 
         for i in range(self.space):
             if self.lot[i] != None and self.lot[i][0] == car:
                 print(i + 1)
@@ -44,6 +47,7 @@ class Parking_lot:
             print(
                 "Car with vehicle registration number %s is not parked here" %(car))
 
+# Function to return Vehicle Registration numbers for all cars which are parked by the driver of a certain age.
     def registration_no_with_age(self, age):
         ans = []
         for i in range(self.space):
@@ -52,6 +56,7 @@ class Parking_lot:
 
         print(*ans)
 
+# Function to vacate the slot
     def leave(self, slot):
         if self.lot[slot - 1] == None:
             print("Slot %d is vacant" % (slot))
@@ -64,10 +69,10 @@ class Parking_lot:
                 "Slot number %d vacated, the car with vehicle registration number %s left the space, the driver of the car was of age %d"
                 % (slot, car, age))
 
-
+# Reading the input from input.txt
 with open('input.txt', 'r') as file:
     input_lines = [line.strip() for line in file]
-sys.stdout = open('output.txt', 'w')
+
 
 for i in range(len(input_lines)):
     if i == 0:
@@ -85,4 +90,4 @@ for i in range(len(input_lines)):
             obj.leave(int(query[1]))
         elif query[0] == "Vehicle_registration_number_for_driver_of_age":
             obj.registration_no_with_age(int(query[1]))
-sys.stdout.close()
+
